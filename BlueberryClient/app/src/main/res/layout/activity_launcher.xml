@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blueberry Client"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+
+        <!-- STEP 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1E3A1E"
+            android:padding="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STEP 1 — On your PC"
+                android:textColor="#81C784"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Double-click START.bat\nA window shows your PC IP (big numbers)"
+                android:textColor="#CCCCCC"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- STEP 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1E1E1E"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STEP 2 — Type PC IP here"
+                android:textColor="#7EB8FF"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/wifiStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Wi-Fi: checking..."
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="8dp"/>
+
+            <EditText
+                android:id="@+id/pcIpInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="192.168.1.105"
+                android:inputType="text"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#555555"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:background="#2A2A2A"
+                android:padding="16dp"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Copy the IP from the PC server window"
+                android:textColor="#666666"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:layout_marginTop="4dp"/>
+
+            <Button
+                android:id="@+id/btnConnect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONNECT"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/btnAutoFind"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Try auto-find (optional)"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/connectionStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Not connected"
+                android:textColor="#FF5252"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/minecraftStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#CCCCCC"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- STEP 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1E1E1E"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="STEP 3 — One time only"
+                android:textColor="#AAAAAA"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btnGrantOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Allow overlay on screen"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/btnEnableAccessibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auto-start when Minecraft opens"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/btnGrantAudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Allow microphone (voice chat)"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnLaunchMinecraft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Minecraft"
+            android:backgroundTint="#4A7BFF"
+            android:textSize="16sp"
+            android:padding="14dp"/>
+
+    </LinearLayout>
+</ScrollView>

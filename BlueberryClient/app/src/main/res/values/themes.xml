@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.BlueberryClient" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#4A7BFF</item>
+        <item name="colorPrimaryDark">#2E5CD6</item>
+        <item name="colorAccent">#7BA0FF</item>
+    </style>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Blueberry Client</string>
+    <string name="accessibility_service_description">Detects when Minecraft opens and automatically starts the Blueberry overlay (HUD, replay controls). Does not read passwords or personal data.</string>
+</resources>
