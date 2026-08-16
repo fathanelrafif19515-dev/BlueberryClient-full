@@ -27,9 +27,13 @@ jobs:
           ndk-version: r25c
           build-tools-version: 30.0.3
 
-      # MENGGUNAKAN GRADLE BAWAAN DARI UTILITY UBUNTU RUNNER LANGSUNG
+      # KEMBALI MENGGUNAKAN GRADLEW BAWAAN PROYEK AGAR VERSI COCOK
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        working-directory: ./BlueberryClient
+
       - name: Build Debug APK
-        run: gradle assembleDebug
+        run: ./gradlew assembleDebug
         working-directory: ./BlueberryClient
 
       - name: Upload APK artifact
