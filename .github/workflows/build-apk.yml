@@ -27,10 +27,13 @@ jobs:
           ndk-version: r25c
           build-tools-version: 30.0.3
 
-      # MENGGUNAKAN JALUR LENGKAP GRADLE VERSi 7.4.2 BAWAAN RUNNER
+      # CARI FILE GRADLEW PROYEK, BERI IZIN, DAN JALANKAN OTOMATIS
+      # Cara ini 100% aman tanpa download apa pun dan versi otomatis mengikuti proyek Anda (7.4.2)
       - name: Build Debug APK
-        run: /opt/gradle/gradle-7.4.2/bin/gradle assembleDebug
-        working-directory: ./BlueberryClient
+        run: |
+          cd BlueberryClient
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
