@@ -37,17 +37,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      # Perubahan di sini: Mengarahkan ke subfolder yang lebih dalam
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-        working-directory: ./BlueberryClient
+        working-directory: ./BlueberryClient-full/BlueberryClient
 
+      # Perubahan di sini: Mengarahkan ke subfolder yang lebih dalam
       - name: Build Debug APK
         run: ./gradlew assembleDebug
-        working-directory: ./BlueberryClient
+        working-directory: ./BlueberryClient-full/BlueberryClient
 
+      # Perubahan di sini: Menyesuaikan jalur hasil output APK
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: blueberry-client-apk
-          path: BlueberryClient/app/build/outputs/apk/debug/app-debug.apk
+          path: BlueberryClient-full/BlueberryClient/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
