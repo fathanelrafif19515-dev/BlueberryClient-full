@@ -19,25 +19,57 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          api-level: 30
-          ndk-version: r25c
-          build-tools-version: 30.0.3
+          api-level: 34
+          ndk-version: r26b
+          build-tools-version: 34.0.0
 
-      # TRICK: KARENA GRADLEW HILANG, KITA BUAT FILE GRADLEW BARU SECARA OTOMATIS
-      - name: Generate Missing Gradle Wrapper
+      - name: Create Gradle wrapper if missing
         run: |
           cd BlueberryClient
-          gradle wrapper --gradle-version 7.4.2
+          if [ ! -f "gradlew" ]; then
+            echo "Creating gradle wrapper with version 8.7..."
+            gradle wrapper --gradle-version 8.7
+          fi
 
-      # JALANKAN BUILD MENGGUNAKAN GRADLEW YANG BARU SAJA DIBUAT DI ATAS
-      - name: Build Debug APK
+      - name: Grant execute permission to gradlew
         run: |
           cd BlueberryClient
           chmod +x gradlew
-          ./gradlew assembleDebug
+
+      - name: Validate gradle wrapper
+        run: |
+          cd BlueberryClient
+          ./gradlew --version
+
+      - name: Build Debug APK
+        run: |
+          cd BlueberryClient
+          ./gradlew assembleDebug \
+            --warning-mode off \
+            -Dorg.gradle.jvmargs="-Xmx4096m" \
+            -Pandroid.useAndroidX=true \
+            -Pandroid.enableJetifier=true
+
+      - name: List build output
+        if: success()
+        run: |
+          cd BlueberryClient
+          find . -name "*.apk" -type f
 
       - name: Upload APK artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: BlueberryClient/app/build/outputs/apk/debug/*.apk
+          retention-days: 7
+
+      - name: Show build failure info
+        if: failure()
+        run: |
+          echo "Build failed. Check logs above for details."
