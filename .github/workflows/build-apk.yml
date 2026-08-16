@@ -27,30 +27,14 @@ jobs:
           ndk-version: r25c
           build-tools-version: 30.0.3
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      # Perubahan di sini: Mengarahkan ke subfolder yang lebih dalam
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        working-directory: ./BlueberryClient-full/BlueberryClient
-
-      # Perubahan di sini: Mengarahkan ke subfolder yang lebih dalam
+      # MENGGUNAKAN GRADLE BAWAAN DARI UTILITY UBUNTU RUNNER LANGSUNG
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
-        working-directory: ./BlueberryClient-full/BlueberryClient
+        run: gradle assembleDebug
+        working-directory: ./BlueberryClient
 
-      # Perubahan di sini: Menyesuaikan jalur hasil output APK
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: blueberry-client-apk
-          path: BlueberryClient-full/BlueberryClient/app/build/outputs/apk/debug/app-debug.apk
+          path: BlueberryClient/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
