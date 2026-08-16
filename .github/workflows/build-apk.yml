@@ -27,8 +27,13 @@ jobs:
           ndk-version: r25c
           build-tools-version: 30.0.3
 
-      # CARI FILE GRADLEW PROYEK, BERI IZIN, DAN JALANKAN OTOMATIS
-      # Cara ini 100% aman tanpa download apa pun dan versi otomatis mengikuti proyek Anda (7.4.2)
+      # TRICK: KARENA GRADLEW HILANG, KITA BUAT FILE GRADLEW BARU SECARA OTOMATIS
+      - name: Generate Missing Gradle Wrapper
+        run: |
+          cd BlueberryClient
+          gradle wrapper --gradle-version 7.4.2
+
+      # JALANKAN BUILD MENGGUNAKAN GRADLEW YANG BARU SAJA DIBUAT DI ATAS
       - name: Build Debug APK
         run: |
           cd BlueberryClient
