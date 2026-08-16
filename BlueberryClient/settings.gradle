@@ -1,43 +1,30 @@
-name: Build Android APK
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex "com\\.android.*"
+                includeGroupByRegex "com\\.google.*"
+                includeGroupByRegex "androidx.*"
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
 
-on:
-  push:
-    branches: [main, master]
-  workflow_dispatch:
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google {
+            content {
+                includeGroupByRegex "com\\.android.*"
+                includeGroupByRegex "com\\.google.*"
+                includeGroupByRegex "androidx.*"
+            }
+        }
+        mavenCentral()
+    }
+}
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          api-level: 30
-          ndk-version: r25c
-          build-tools-version: 30.0.3
-
-      # TRICK: KARENA GRADLEW HILANG, KITA BUAT FILE GRADLEW BARU SECARA OTOMATIS
-      - name: Generate Missing Gradle Wrapper
-        run: |
-          cd BlueberryClient
-          gradle wrapper --gradle-version 7.4.2
-
-      # JALANKAN BUILD MENGGUNAKAN GRADLEW YANG BARU SAJA DIBUAT DI ATAS
-      - name: Build Debug APK
-        run: |
-          cd BlueberryClient
-          chmod +x gradlew
-          ./gradlew assembleDebug
-
-      - name: Upload APK artifact
+rootProject.name = "BlueberryClient"
+include ':app'
