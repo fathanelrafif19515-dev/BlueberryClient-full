@@ -27,15 +27,9 @@ jobs:
           ndk-version: r25c
           build-tools-version: 30.0.3
 
-      # MEMAKSA SISTEM MENGGUNAKAN GRADLE 7.x BAWAAN RUNNER (MENENTANG VERSI 9.7.0)
-      - name: Use Gradle 7
-        run: |
-          echo "/opt/gradle/gradle-7.6.1/bin" >> $GITHUB_PATH
-          echo "Mengarahkan sistem ke Gradle versi lama..."
-
-      # PERINTAH BUILD MENGGUNAKAN GRADLE YANG SUDAH DIKUNCI DI ATAS
+      # MENGGUNAKAN JALUR LENGKAP GRADLE VERSi 7.4.2 BAWAAN RUNNER
       - name: Build Debug APK
-        run: gradle assembleDebug
+        run: /opt/gradle/gradle-7.4.2/bin/gradle assembleDebug
         working-directory: ./BlueberryClient
 
       - name: Upload APK artifact
